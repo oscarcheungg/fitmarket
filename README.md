@@ -1,6 +1,8 @@
-# MacroCheck — Restaurant Menu Macro Analyzer
+# Macrofy
 
-Search any food for instant macro breakdowns. Browse restaurant menus ranked by nutrition score. Track your daily macros. Compare meals side by side.
+Find the best macro-friendly menu items at any restaurant.
+
+A single-purpose tool that ranks restaurant menu items by macro score based on your diet goal (balanced, high protein, low carb, or low calorie). Search a restaurant, see every item ranked, and build your ideal meal.
 
 ## Live Demo
 
@@ -8,38 +10,28 @@ Search any food for instant macro breakdowns. Browse restaurant menus ranked by 
 
 ## Features
 
-### 1. Real-Time Food Search
-- Type any food (e.g. "chicken breast", "big mac", "chipotle bowl") and get instant macro breakdowns
-- Powered by CalorieNinjas API with natural language processing
-- Visual donut chart showing protein/carbs/fat calorie distribution
-- Macro score (0-100) based on your selected diet goal
-- Data source: CalorieNinjas API (live, cached 1 hour)
+### Restaurant Search & Ranking
+- Search from 20 popular restaurant chains (Chipotle, McDonald's, Chick-fil-A, Subway, Sweetgreen, Wendy's, Taco Bell, Panda Express, Five Guys, Panera Bread, Popeyes, In-N-Out, Shake Shack, Qdoba, Wingstop, Jersey Mike's, CAVA, Raising Cane's)
+- Every menu item scored 0-100 and ranked by your selected diet goal
+- Expandable macro breakdown with donut chart for any item
+- 160+ pre-loaded menu items with verified nutrition data
 
-### 2. Restaurant Explorer
-- Browse 10 popular restaurant chains: Chipotle, McDonald's, Chick-fil-A, Subway, Sweetgreen, Wendy's, Taco Bell, Panda Express, Five Guys, Panera Bread
-- 100+ pre-loaded menu items with verified nutrition data
-- Filter by diet goal: Balanced, High Protein, Low Carb, Low Calorie
-- Items ranked by macro score with category filters
-- Data source: Static restaurant database
+### Diet Goal Selector
+- **Balanced** — optimal 30/40/30 protein/carbs/fat ratio
+- **High Protein** — prioritizes protein > 30% of calories
+- **Low Carb** — rewards carbs < 25% of calories
+- **Low Calorie** — favors items under 500 calories
 
-### 3. Daily Macro Tracker
-- Set custom daily goals for calories, protein, carbs, and fat
-- Search and log foods throughout the day
-- Visual progress bars showing % of each goal hit
-- "What Should I Eat?" AI-powered suggestions based on remaining macros
-- Data persists in browser localStorage
+### Meal Builder
+- Add items from any restaurant to build a complete meal
+- Real-time combined macro totals (calories, protein, carbs, fat)
+- Visual percentage breakdown bars
+- Mix and match across restaurants
 
-### 4. Meal Comparison Tool
-- Side-by-side comparison of 2-4 menu items
-- Radar chart visualization of macro profiles
-- Comparison table with winner highlighting
-- Supports any food searchable via the API
-
-### 5. Restaurant Analytics
-- Average calories by restaurant (bar chart)
-- Protein density ranking across chains (% of calories from protein)
-- Healthiest menu items leaderboard (top 8 by macro score)
-- All computed from the static restaurant database
+### Real-Time Food Search (API)
+- CalorieNinjas API integration for searching any food not in the database
+- Natural language queries (e.g. "grilled salmon with rice")
+- Real-time macro data with 1-hour caching
 
 ## Tech Stack
 
@@ -54,7 +46,7 @@ Search any food for instant macro breakdowns. Browse restaurant menus ranked by 
 ## Getting Started
 
 ### Prerequisites
-- Node.js 18+ installed
+- Node.js 18+
 - npm
 
 ### Installation
@@ -75,28 +67,19 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the dashboard.
+Open [http://localhost:3000](http://localhost:3000).
 
 ### Environment Variables
 
 | Variable | Required | Description |
 |---|---|---|
-| `CALORIENINJAS_API_KEY` | Yes | Free API key from [CalorieNinjas](https://calorieninjas.com/api). Sign up for free (10,000 requests/month). |
-
-### Build for Production
-
-```bash
-npm run build
-npm start
-```
+| `CALORIENINJAS_API_KEY` | Yes | Free key from [CalorieNinjas](https://calorieninjas.com/api) (10,000 req/month) |
 
 ### Deploy to Vercel
 
 ```bash
 npx vercel
 ```
-
-Or connect your GitHub repo at [vercel.com](https://vercel.com) for automatic deployments.
 
 ## Project Structure
 
@@ -105,47 +88,36 @@ src/
 ├── app/
 │   ├── api/
 │   │   ├── nutrition/route.ts     # CalorieNinjas API proxy
-│   │   ├── restaurants/route.ts   # Static restaurant data with scoring
-│   │   └── suggest/route.ts      # Macro-based meal suggestions
-│   ├── restaurants/page.tsx       # Restaurant explorer
-│   ├── track/page.tsx             # Daily macro tracker
-│   ├── compare/page.tsx           # Meal comparison tool
-│   ├── layout.tsx                 # Root layout with sidebar
-│   ├── page.tsx                   # Main search & analytics page
-│   └── globals.css                # Global styles & theme
+│   │   ├── restaurants/route.ts   # Static data with scoring
+│   │   └── suggest/route.ts      # Macro-based suggestions
+│   ├── layout.tsx                 # Root layout
+│   ├── page.tsx                   # Main search tool
+│   └── globals.css                # Styles & animations
 ├── components/
-│   ├── Sidebar.tsx                # Navigation sidebar
-│   ├── SearchBar.tsx              # Debounced food search
 │   ├── MacroBreakdown.tsx         # Donut chart + macro bars
-│   ├── MacroScore.tsx             # Circular score badge (0-100)
-│   ├── GoalSelector.tsx           # Diet goal picker
-│   ├── RestaurantCard.tsx         # Restaurant grid card
-│   ├── MenuItemRow.tsx            # Menu item with inline macros
-│   ├── DailyTracker.tsx           # Full daily tracking interface
-│   ├── MealComparison.tsx         # Side-by-side radar comparison
-│   └── RestaurantAnalytics.tsx    # Aggregate charts
+│   ├── MacroScore.tsx             # Circular score badge
+│   └── GoalSelector.tsx           # Diet goal picker
 └── lib/
-    ├── restaurant-data.ts         # Static restaurant menu database
-    └── macro-utils.ts             # Scoring & calculation utilities
+    ├── restaurant-data.ts         # 160+ menu items, 20 chains
+    └── macro-utils.ts             # Scoring & calculation utils
 ```
 
 ## Target Audience
 
-**Fitness enthusiasts, dieters, meal preppers, and health-conscious consumers** who eat at restaurant chains and want to make informed nutrition decisions without manually looking up every menu item.
+**Health-conscious consumers** who eat at restaurant chains and want to quickly find the best option for their diet without manually researching every menu item.
 
 ## Monetization Strategy
 
-1. **Freemium SaaS:** Free search with limits, Pro tier ($4.99/mo) for unlimited tracking, saved meal plans, and restaurant alerts
-2. **Affiliate Partnerships:** Partner with meal delivery services and recommend macro-friendly options
-3. **B2B Data Licensing:** Sell anonymized aggregate nutrition preference data to restaurant chains for menu optimization
+1. **Freemium:** Free basic search, Pro ($4.99/mo) for unlimited meal building, saved preferences, and alerts
+2. **Affiliate Partnerships:** Meal delivery recommendations
+3. **B2B Data:** Anonymized preference data for restaurant chains
 
 ## Data Sources
 
 | Data | Source | Type |
 |---|---|---|
 | Food Nutrition | CalorieNinjas API | Real-time (cached 1 hour) |
-| Restaurant Menus | Static Database | 100+ items across 10 chains |
-| Meal Suggestions | CalorieNinjas + Database | Hybrid real-time + static |
+| Restaurant Menus | Static Database | 160+ items across 20 chains |
 
 ## License
 

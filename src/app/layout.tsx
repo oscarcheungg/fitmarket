@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "@/components/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MacroCheck",
+  title: "Macrofy",
   description:
-    "Restaurant Menu Macro Analyzer — Search, Compare & Track Nutrition",
+    "Find the best macro-friendly menu items at any restaurant.",
 };
 
 export default function RootLayout({
@@ -29,10 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex min-h-screen overflow-x-hidden">
-          <Sidebar />
-          <main className="flex-1 ml-56 min-w-0">{children}</main>
-        </div>
+        <main className="min-h-screen">{children}</main>
       </body>
     </html>
   );

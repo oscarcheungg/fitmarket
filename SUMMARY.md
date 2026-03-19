@@ -1,4 +1,4 @@
-# MacroCheck — One-Page Summary
+# Macrofy — One-Page Summary
 
 **Live URL:** https://fitmarket-beta.vercel.app
 **GitHub:** https://github.com/oscarcheungg/fitmarket
@@ -8,13 +8,11 @@
 
 ## Purpose & Functionality
 
-MacroCheck is a restaurant menu macro analyzer that helps health-conscious consumers make informed dining decisions. It combines real-time nutrition data from the CalorieNinjas API with a curated static database of 100+ menu items from 10 major restaurant chains to provide instant macro breakdowns, smart comparisons, and daily tracking. Key features include:
+Macrofy is a single-purpose tool that helps health-conscious consumers find the best macro-friendly menu items at any restaurant. Users search a restaurant, select their diet goal, and instantly see every menu item ranked by a 0-100 macro score. It combines real-time nutrition data from the CalorieNinjas API with a curated static database of 160+ menu items across 20 major restaurant chains. Key features include:
 
-- **Real-Time Food Search** — Type any food in natural language (e.g., "grilled chicken breast", "chipotle bowl") and get an instant macro breakdown with a donut chart showing protein/carbs/fat distribution and a 0-100 macro score based on your diet goal. Powered by the CalorieNinjas API.
-- **Restaurant Explorer** — Browse pre-loaded menus from Chipotle, McDonald's, Chick-fil-A, Subway, Sweetgreen, Wendy's, Taco Bell, Panda Express, Five Guys, and Panera Bread. Items are ranked by macro score and filterable by diet goal (Balanced, High Protein, Low Carb, Low Calorie).
-- **Daily Macro Tracker** — Set personal calorie/protein/carbs/fat goals, log meals throughout the day, and see real-time progress bars. A "What Should I Eat?" feature queries the API and static database to suggest foods that best fill remaining macros.
-- **Meal Comparison Tool** — Compare 2-4 foods side by side with a radar chart overlay, a comparison table highlighting winners per metric, and macro scores for each item.
-- **Restaurant Analytics** — Aggregate charts showing average calories by restaurant, protein density rankings, and a healthiest menu items leaderboard computed from the static database.
+- **Restaurant Search & Ranking** — Search from 20 popular chains (Chipotle, McDonald's, Chick-fil-A, Subway, In-N-Out, Popeyes, Shake Shack, CAVA, and more). Every menu item is scored and ranked by the user's selected diet goal (Balanced, High Protein, Low Carb, or Low Calorie). Click any item to expand a detailed macro breakdown with a donut chart.
+- **Meal Builder** — Add multiple items from any restaurant to build a complete meal. See combined macro totals and percentage breakdowns update in real time. Helps users plan an entire order, not just pick one item.
+- **Real-Time API Search** — For foods not in the database, the CalorieNinjas API provides instant macro data via natural language queries (e.g., "grilled salmon with rice").
 
 ---
 
@@ -22,21 +20,21 @@ MacroCheck is a restaurant menu macro analyzer that helps health-conscious consu
 
 **Primary users:** Fitness enthusiasts, dieters, meal preppers, and health-conscious consumers who frequently eat at restaurant chains.
 
-**How they use it:** Before or during a restaurant visit, users search the restaurant's menu to find options that fit their diet. Throughout the day, they log meals in the tracker to ensure they hit their macro targets. The comparison tool helps them decide between two similar options (e.g., Chipotle chicken bowl vs. Sweetgreen chicken pesto parm). The analytics section provides broader context on which chains are most macro-friendly overall.
+**How they use it:** Before visiting a restaurant, users search its name in Macrofy and instantly see every menu item ranked for their diet. They tap items to see detailed macro breakdowns, then use the Meal Builder to plan their full order and see combined totals. The tool replaces 5 minutes of Googling nutrition PDFs with a 10-second search.
 
-**Why over alternatives:** Existing apps like MyFitnessPal require tedious manual entry and overwhelming databases. MacroCheck is purpose-built for restaurant dining — it ranks entire menus by macro score in one click, suggests what to eat based on remaining daily macros, and compares options with visual radar charts. It turns a 5-minute calorie-counting chore into a 10-second decision.
+**Why over alternatives:** Apps like MyFitnessPal require tedious manual entry and have overwhelming databases. Macrofy is purpose-built for one thing: finding the best macro option at a restaurant. It ranks entire menus by a single score, making the decision instant. No account required, no tracking overhead — just search, see, decide.
 
 ---
 
 ## Sales Pitch & Monetization
 
-MacroCheck generates value for two market segments:
+Macrofy generates value for two market segments:
 
-1. **Health-Conscious Consumers (B2C)** — The core product. Anyone tracking macros or following a diet plan (high protein, low carb, etc.) benefits from instant restaurant menu scoring. The daily tracker replaces spreadsheet-based macro counting with a visual, interactive tool.
+1. **Health-Conscious Consumers (B2C)** — Anyone tracking macros or following a diet (high protein, low carb, keto, etc.) benefits from instant restaurant menu scoring. The Meal Builder lets users plan orders before arriving, reducing decision fatigue and diet slip-ups.
 
-2. **Restaurant Chains (B2B)** — Anonymized aggregate data on which menu items score highest for health-conscious users, which diet goals are most popular, and how their chain compares to competitors on protein density and calorie efficiency. This data helps chains optimize menus and market their healthier options.
+2. **Restaurant Chains (B2B)** — Anonymized aggregate data on which menu items score highest for health-conscious users, which diet goals are most popular, and how a chain compares to competitors on protein density and calorie efficiency. This data helps chains optimize menus and market their healthier options more effectively.
 
 **Monetization strategy:**
-- **Freemium SaaS** — Free tier with basic search (limited API calls); Pro tier ($4.99/month) with unlimited searches, saved meal plans, multi-day tracking history, and restaurant alerts when new macro-friendly items launch.
-- **Affiliate Partnerships** — Integrate with meal delivery services (e.g., Factor, Trifecta) and recommend macro-optimized meals, earning a commission per signup.
-- **B2B Data Licensing** — License anonymized nutrition preference analytics to restaurant chains for menu optimization and marketing ($200-500/month per chain).
+- **Freemium SaaS** — Free tier with basic search; Pro tier ($4.99/month) with unlimited meal building, saved favorites, multi-restaurant meal planning, and alerts when new items are added.
+- **Affiliate Partnerships** — Integrate with meal delivery services (Factor, Trifecta) and recommend macro-optimized meals, earning a commission per signup.
+- **B2B Data Licensing** — License anonymized nutrition preference analytics to restaurant chains for menu optimization ($200-500/month per chain).

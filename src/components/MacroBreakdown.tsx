@@ -9,7 +9,7 @@ interface MacroBreakdownProps {
 
 const MACRO_COLORS = {
   protein: "#3b82f6",
-  carbs: "#eab308",
+  carbs: "#f59e0b",
   fat: "#ef4444",
 };
 
@@ -22,28 +22,27 @@ export function MacroBreakdown({ item }: MacroBreakdownProps) {
   ];
 
   const macros = [
-    { label: "Protein", value: item.protein, unit: "g", pct: pct.protein, color: MACRO_COLORS.protein, bgColor: "bg-protein-light" },
-    { label: "Carbs", value: item.carbs, unit: "g", pct: pct.carbs, color: MACRO_COLORS.carbs, bgColor: "bg-carbs-light" },
-    { label: "Fat", value: item.fat, unit: "g", pct: pct.fat, color: MACRO_COLORS.fat, bgColor: "bg-fat-light" },
+    { label: "Protein", value: item.protein, unit: "g", pct: pct.protein, color: MACRO_COLORS.protein },
+    { label: "Carbs", value: item.carbs, unit: "g", pct: pct.carbs, color: MACRO_COLORS.carbs },
+    { label: "Fat", value: item.fat, unit: "g", pct: pct.fat, color: MACRO_COLORS.fat },
   ];
 
   return (
-    <div className="bg-card rounded-xl border border-border p-5 animate-fade-in">
+    <div className="animate-fade-in">
       {item.name && (
-        <h3 className="text-sm font-bold capitalize mb-4">{item.name}</h3>
+        <h3 className="text-sm font-bold capitalize mb-3">{item.name}</h3>
       )}
 
       <div className="flex items-center gap-6">
-        {/* Donut chart */}
-        <div className="relative w-32 h-32 shrink-0">
+        <div className="relative w-28 h-28 shrink-0">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={pieData}
                 cx="50%"
                 cy="50%"
-                innerRadius={35}
-                outerRadius={55}
+                innerRadius={30}
+                outerRadius={48}
                 dataKey="value"
                 strokeWidth={0}
               >
@@ -54,22 +53,21 @@ export function MacroBreakdown({ item }: MacroBreakdownProps) {
             </PieChart>
           </ResponsiveContainer>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-xl font-bold">{item.calories}</span>
-            <span className="text-[10px] text-muted">cal</span>
+            <span className="text-lg font-bold">{item.calories}</span>
+            <span className="text-[9px] text-muted">cal</span>
           </div>
         </div>
 
-        {/* Macro bars */}
-        <div className="flex-1 space-y-3">
+        <div className="flex-1 space-y-2.5">
           {macros.map((m) => (
             <div key={m.label}>
-              <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center justify-between mb-0.5">
                 <span className="text-xs font-medium">{m.label}</span>
-                <span className="text-xs text-muted">
+                <span className="text-[11px] text-muted">
                   {m.value}{m.unit} · {m.pct}%
                 </span>
               </div>
-              <div className="h-2 bg-border rounded-full overflow-hidden">
+              <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-500"
                   style={{ width: `${m.pct}%`, backgroundColor: m.color }}
@@ -80,12 +78,10 @@ export function MacroBreakdown({ item }: MacroBreakdownProps) {
         </div>
       </div>
 
-      {/* Secondary stats */}
-      <div className="mt-4 pt-3 border-t border-border flex gap-4 text-[11px] text-muted">
+      <div className="mt-3 pt-2 border-t border-border flex gap-4 text-[10px] text-muted">
         {item.fiber !== undefined && <span>Fiber: {item.fiber}g</span>}
         {item.sodium !== undefined && <span>Sodium: {item.sodium}mg</span>}
         {item.sugar !== undefined && <span>Sugar: {item.sugar}g</span>}
-        {item.servingSize !== undefined && <span>Serving: {item.servingSize}g</span>}
       </div>
     </div>
   );

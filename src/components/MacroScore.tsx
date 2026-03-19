@@ -10,9 +10,9 @@ interface MacroScoreProps {
 
 export function MacroScore({ score, size = "md", showLabel = false }: MacroScoreProps) {
   const sizes = {
-    sm: { w: 36, stroke: 3, text: "text-[10px]", label: "text-[8px]" },
-    md: { w: 56, stroke: 4, text: "text-sm", label: "text-[10px]" },
-    lg: { w: 80, stroke: 5, text: "text-xl", label: "text-xs" },
+    sm: { w: 34, stroke: 2.5, text: "text-[10px]", label: "text-[8px]" },
+    md: { w: 52, stroke: 3.5, text: "text-sm", label: "text-[10px]" },
+    lg: { w: 72, stroke: 4, text: "text-lg", label: "text-xs" },
   };
   const s = sizes[size];
   const r = (s.w - s.stroke) / 2;
@@ -23,7 +23,7 @@ export function MacroScore({ score, size = "md", showLabel = false }: MacroScore
 
   const colorMap: Record<string, string> = {
     green: "#22c55e",
-    yellow: "#eab308",
+    yellow: "#f59e0b",
     red: "#ef4444",
   };
 
@@ -35,7 +35,7 @@ export function MacroScore({ score, size = "md", showLabel = false }: MacroScore
           cy={s.w / 2}
           r={r}
           fill="none"
-          stroke="#27272a"
+          stroke="#f0f0f0"
           strokeWidth={s.stroke}
         />
         <circle
@@ -55,7 +55,7 @@ export function MacroScore({ score, size = "md", showLabel = false }: MacroScore
           y={s.w / 2}
           textAnchor="middle"
           dominantBaseline="central"
-          fill="#fafafa"
+          fill="#111111"
           className={`${s.text} font-bold`}
           transform={`rotate(90, ${s.w / 2}, ${s.w / 2})`}
         >
