@@ -3,18 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  LayoutDashboard,
-  TrendingUp,
-  Newspaper,
-  CloudSun,
-  Activity,
+  Search,
+  Store,
+  Target,
+  GitCompareArrows,
+  UtensilsCrossed,
 } from "lucide-react";
 
 const navItems = [
-  { href: "/", label: "Overview", icon: LayoutDashboard },
-  { href: "/trends", label: "Trends", icon: TrendingUp },
-  { href: "/news", label: "News", icon: Newspaper },
-  { href: "/weather", label: "Weather", icon: CloudSun },
+  { href: "/", label: "Search", icon: Search },
+  { href: "/restaurants", label: "Restaurants", icon: Store },
+  { href: "/track", label: "Track", icon: Target },
+  { href: "/compare", label: "Compare", icon: GitCompareArrows },
 ];
 
 export function Sidebar() {
@@ -24,8 +24,8 @@ export function Sidebar() {
     <aside className="fixed left-0 top-0 h-screen w-56 bg-surface border-r border-border flex flex-col z-50">
       <div className="px-5 py-5 border-b border-border">
         <Link href="/" className="flex items-center gap-2">
-          <Activity className="w-5 h-5 text-accent" />
-          <span className="text-sm font-bold tracking-tight">FitMarket</span>
+          <UtensilsCrossed className="w-5 h-5 text-accent" />
+          <span className="text-sm font-bold tracking-tight">MacroCheck</span>
           <span className="w-1.5 h-1.5 bg-green rounded-full animate-pulse-dot" />
         </Link>
       </div>
@@ -53,7 +53,7 @@ export function Sidebar() {
       <div className="px-5 py-4 border-t border-border">
         <div className="flex items-center gap-2 text-[11px] text-muted">
           <span className="w-1.5 h-1.5 bg-green rounded-full animate-pulse-dot" />
-          3 live APIs
+          CalorieNinjas API
         </div>
       </div>
     </aside>

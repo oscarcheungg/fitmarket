@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FitMarket Intelligence",
+  title: "MacroCheck",
   description:
-    "Real-time Health & Fitness Industry Analytics for Business Decision-Makers",
+    "Restaurant Menu Macro Analyzer — Search, Compare & Track Nutrition",
 };
 
 export default function RootLayout({

@@ -7,9 +7,15 @@
   --color-card-hover: #1f1f23;
   --color-border: #27272a;
   --color-muted: #71717a;
-  --color-accent: #f97316;
-  --color-accent-light: rgba(249, 115, 22, 0.1);
-  --color-accent-dark: #fb923c;
+  --color-accent: #22c55e;
+  --color-accent-light: rgba(34, 197, 94, 0.1);
+  --color-accent-dark: #4ade80;
+  --color-protein: #3b82f6;
+  --color-carbs: #eab308;
+  --color-fat: #ef4444;
+  --color-protein-light: rgba(59, 130, 246, 0.1);
+  --color-carbs-light: rgba(234, 179, 8, 0.1);
+  --color-fat-light: rgba(239, 68, 68, 0.1);
   --color-green: #22c55e;
   --color-red: #ef4444;
   --color-blue: #3b82f6;

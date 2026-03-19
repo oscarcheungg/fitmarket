@@ -1,8 +1,6 @@
-# FitMarket Intelligence Dashboard
+# MacroCheck — Restaurant Menu Macro Analyzer
 
-Real-time Health & Fitness Industry Analytics for Business Decision-Makers.
-
-A live, interactive dashboard that tracks the business side of the fitness and health industry by combining real-time data from multiple free public APIs to surface actionable market insights. Think of it as a Bloomberg Terminal for the fitness market.
+Search any food for instant macro breakdowns. Browse restaurant menus ranked by nutrition score. Track your daily macros. Compare meals side by side.
 
 ## Live Demo
 
@@ -10,37 +8,38 @@ A live, interactive dashboard that tracks the business side of the fitness and h
 
 ## Features
 
-### 1. Fitness Stock Tracker
-- Live prices for major fitness brands: Nike, Peloton, Lululemon, Planet Fitness, Under Armour, Deckers (HOKA)
-- Animated ticker bar with real-time price updates
-- Individual stock cards showing price, change %, volume, and market cap
-- Data source: Yahoo Finance API (with intelligent fallback)
+### 1. Real-Time Food Search
+- Type any food (e.g. "chicken breast", "big mac", "chipotle bowl") and get instant macro breakdowns
+- Powered by CalorieNinjas API with natural language processing
+- Visual donut chart showing protein/carbs/fat calorie distribution
+- Macro score (0-100) based on your selected diet goal
+- Data source: CalorieNinjas API (live, cached 1 hour)
 
-### 2. Fitness Trends Analysis
-- Google Trends-style interest tracker for 10 fitness topics
-- Interactive topic selector (compare up to 5 topics simultaneously)
-- 12-month trend lines with seasonal patterns
-- Topics include: gym membership, home workout, yoga, HIIT, CrossFit, ozempic, wearables, pilates, and more
+### 2. Restaurant Explorer
+- Browse 10 popular restaurant chains: Chipotle, McDonald's, Chick-fil-A, Subway, Sweetgreen, Wendy's, Taco Bell, Panda Express, Five Guys, Panera Bread
+- 100+ pre-loaded menu items with verified nutrition data
+- Filter by diet goal: Balanced, High Protein, Low Carb, Low Calorie
+- Items ranked by macro score with category filters
+- Data source: Static restaurant database
 
-### 3. Weather x Fitness Activity Correlation
-- Live weather data for 5 major US cities (New York, LA, Chicago, Miami, Denver)
-- Proprietary Gym Activity Index and Outdoor Activity Index (0-100)
-- 7-day forecast with predicted fitness behavior
-- Cross-city comparison view
-- Data source: Open-Meteo API (free, no key required)
+### 3. Daily Macro Tracker
+- Set custom daily goals for calories, protein, carbs, and fat
+- Search and log foods throughout the day
+- Visual progress bars showing % of each goal hit
+- "What Should I Eat?" AI-powered suggestions based on remaining macros
+- Data persists in browser localStorage
 
-### 4. News Feed with AI Sentiment Analysis
-- Live fitness industry news headlines
-- AI-powered sentiment analysis classifying each article as Positive, Neutral, or Negative
-- Aggregate sentiment gauge showing overall market mood
-- Data source: NewsAPI (optional key) with curated fallback data
+### 4. Meal Comparison Tool
+- Side-by-side comparison of 2-4 menu items
+- Radar chart visualization of macro profiles
+- Comparison table with winner highlighting
+- Supports any food searchable via the API
 
-### 5. Historical Market Data
-- Static dataset of post-COVID fitness industry recovery trends (2019-2024)
-- Revenue by segment: Gym & Health Clubs, Digital Fitness, Wearables, Supplements
-- Market share breakdown (pie chart)
-- Year-over-year growth rates by segment
-- Contextualizes real-time data with historical benchmarks
+### 5. Restaurant Analytics
+- Average calories by restaurant (bar chart)
+- Protein density ranking across chains (% of calories from protein)
+- Healthiest menu items leaderboard (top 8 by macro score)
+- All computed from the static restaurant database
 
 ## Tech Stack
 
@@ -49,7 +48,7 @@ A live, interactive dashboard that tracks the business side of the fitness and h
 - **Styling:** Tailwind CSS v4
 - **Charts:** Recharts
 - **Icons:** Lucide React
-- **APIs:** Yahoo Finance, Open-Meteo, NewsAPI
+- **API:** CalorieNinjas (real-time nutrition data)
 - **Deployment:** Vercel
 
 ## Getting Started
@@ -62,15 +61,15 @@ A live, interactive dashboard that tracks the business side of the fitness and h
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/fitmarket.git
+git clone https://github.com/oscarcheungg/fitmarket.git
 cd fitmarket
 
 # Install dependencies
 npm install
 
-# (Optional) Add your NewsAPI key
+# Add your CalorieNinjas API key (free)
 cp .env.example .env.local
-# Edit .env.local and add your key from https://newsapi.org/register
+# Edit .env.local and add your key from https://calorieninjas.com/api
 
 # Start development server
 npm run dev
@@ -82,7 +81,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the dashboard.
 
 | Variable | Required | Description |
 |---|---|---|
-| `NEWS_API_KEY` | No | Free API key from [NewsAPI.org](https://newsapi.org/register) for live news. Falls back to curated data if not provided. |
+| `CALORIENINJAS_API_KEY` | Yes | Free API key from [CalorieNinjas](https://calorieninjas.com/api). Sign up for free (10,000 requests/month). |
 
 ### Build for Production
 
@@ -105,48 +104,48 @@ Or connect your GitHub repo at [vercel.com](https://vercel.com) for automatic de
 src/
 ├── app/
 │   ├── api/
-│   │   ├── stocks/route.ts    # Yahoo Finance stock data
-│   │   ├── news/route.ts      # News + sentiment analysis
-│   │   ├── weather/route.ts   # Open-Meteo weather data
-│   │   └── trends/route.ts    # Fitness search trends
-│   ├── trends/page.tsx        # Full trends page
-│   ├── news/page.tsx          # Full news page
-│   ├── weather/page.tsx       # Full weather page
-│   ├── layout.tsx             # Root layout with sidebar
-│   ├── page.tsx               # Main overview dashboard
-│   └── globals.css            # Global styles
+│   │   ├── nutrition/route.ts     # CalorieNinjas API proxy
+│   │   ├── restaurants/route.ts   # Static restaurant data with scoring
+│   │   └── suggest/route.ts      # Macro-based meal suggestions
+│   ├── restaurants/page.tsx       # Restaurant explorer
+│   ├── track/page.tsx             # Daily macro tracker
+│   ├── compare/page.tsx           # Meal comparison tool
+│   ├── layout.tsx                 # Root layout with sidebar
+│   ├── page.tsx                   # Main search & analytics page
+│   └── globals.css                # Global styles & theme
 ├── components/
-│   ├── Sidebar.tsx            # Navigation sidebar
-│   ├── StockTicker.tsx        # Animated stock ticker
-│   ├── StockCards.tsx         # Stock detail cards
-│   ├── NewsFeed.tsx           # News article list
-│   ├── SentimentGauge.tsx     # SVG sentiment gauge
-│   ├── TrendsChart.tsx        # Trends line charts
-│   ├── WeatherImpact.tsx      # Weather correlation charts
-│   └── MarketOverviewCharts.tsx # Historical data charts
+│   ├── Sidebar.tsx                # Navigation sidebar
+│   ├── SearchBar.tsx              # Debounced food search
+│   ├── MacroBreakdown.tsx         # Donut chart + macro bars
+│   ├── MacroScore.tsx             # Circular score badge (0-100)
+│   ├── GoalSelector.tsx           # Diet goal picker
+│   ├── RestaurantCard.tsx         # Restaurant grid card
+│   ├── MenuItemRow.tsx            # Menu item with inline macros
+│   ├── DailyTracker.tsx           # Full daily tracking interface
+│   ├── MealComparison.tsx         # Side-by-side radar comparison
+│   └── RestaurantAnalytics.tsx    # Aggregate charts
 └── lib/
-    └── historical-data.ts     # Static baseline dataset
+    ├── restaurant-data.ts         # Static restaurant menu database
+    └── macro-utils.ts             # Scoring & calculation utilities
 ```
 
 ## Target Audience
 
-**Fitness startup founders, gym franchise investors, and wellness brand marketers** who need market intelligence to make data-driven business decisions but cannot afford enterprise analytics tools.
+**Fitness enthusiasts, dieters, meal preppers, and health-conscious consumers** who eat at restaurant chains and want to make informed nutrition decisions without manually looking up every menu item.
 
 ## Monetization Strategy
 
-1. **Freemium Model:** Free tier with delayed data, paid tier ($29/mo) with real-time data + AI-powered summaries
-2. **White-label:** License the dashboard to fitness chains and wellness VC firms ($500/mo)
-3. **API Access:** Sell processed fitness market data via API to developers and analysts
+1. **Freemium SaaS:** Free search with limits, Pro tier ($4.99/mo) for unlimited tracking, saved meal plans, and restaurant alerts
+2. **Affiliate Partnerships:** Partner with meal delivery services and recommend macro-friendly options
+3. **B2B Data Licensing:** Sell anonymized aggregate nutrition preference data to restaurant chains for menu optimization
 
-## Data Sources & Refresh Rates
+## Data Sources
 
-| Data | Source | Refresh Rate |
+| Data | Source | Type |
 |---|---|---|
-| Stock Prices | Yahoo Finance API | Every 60 seconds |
-| Weather & Activity | Open-Meteo API | Every 10 minutes |
-| News & Sentiment | NewsAPI / Fallback | Every 5 minutes |
-| Search Trends | Algorithmic model | On page load |
-| Historical Data | Static dataset | Baseline (2019-2024) |
+| Food Nutrition | CalorieNinjas API | Real-time (cached 1 hour) |
+| Restaurant Menus | Static Database | 100+ items across 10 chains |
+| Meal Suggestions | CalorieNinjas + Database | Hybrid real-time + static |
 
 ## License
 
